@@ -40,7 +40,7 @@ def check_subject_validity(
             wrong_spacing.append(str(file_))
         if file_.name.endswith("seg.nii.gz"):
             arr = sitk.GetArrayFromImage(image)
-            found_labels = np.unique(arr)
+            found_labels = np.unique(arr).astype(int)
             if len(set(found_labels).difference(EXPECTED_LABELS)) > 0:
                 wrong_labels.append(str(file_))
     return missing_files, wrong_size, wrong_spacing, wrong_labels
